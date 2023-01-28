@@ -1,4 +1,10 @@
 .weather-container {
     display: flex;
     flex-direction: column;
+    width: 150px;
+    background: rgba(20, 20, 20, 0.5);
+    padding: 0.5em;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: thin;
 }

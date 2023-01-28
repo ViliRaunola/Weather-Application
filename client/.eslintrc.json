@@ -12,6 +12,8 @@
   "plugins": ["react"],
   "rules": {
     "func-names": "off",
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "no-shadow": "off",
+    "no-plusplus": "off"
   }
 }
