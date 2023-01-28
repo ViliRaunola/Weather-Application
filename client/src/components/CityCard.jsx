@@ -48,7 +48,7 @@ function CityCard({
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions sx={{ justifyContent: 'center', marginBottom: '1em' }}>
         <ThemeProvider theme={themeButton}>
           <Button variant="contained" size="small" color="neutral" onClick={() => onSelectingCity(cityName, latitude, longitude)}>
             Check Weather
