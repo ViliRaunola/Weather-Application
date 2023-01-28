@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
 import './WeatherInformation.css';
-import { Typography } from '@mui/material';
+import { Tooltip, Typography } from '@mui/material';
 import React from 'react';
 import wmoInterpretation from '../data/WmoProperties';
 
@@ -43,25 +43,29 @@ function WeatherInformation({
           <img style={{ marginTop: '1em' }} width={50} height={50} src={`${selectIcon(wmoCode)}`} alt="icon" />
         ) : null}
       </div>
-      <Typography variant="body1" pt="2em" color="white">
-        {dayMaxTemp}
-        {' '}
-        /
-        {' '}
-        {dayMinTemp}
-        {' '}
-        {unitTemp}
-      </Typography>
-      <Typography variant="body1" pt="1em" color="white">
-        {dayMaxWind}
-        {' '}
-        {unitWind}
-      </Typography>
-      <Typography variant="body1" pt="1em" color="white">
+      <Tooltip title="Max and min temp">
+        <Typography variant="body1" pt="2em" color="white">
+          {dayMaxTemp}
+          {' '}
+          /
+          {' '}
+          {dayMinTemp}
+          {' '}
+          {unitTemp}
+        </Typography>
+      </Tooltip>
+      <Tooltip title="Max wind speed">
+        <Typography variant="body1" pt="0.5em" color="white">
+          {dayMaxWind}
+          {' '}
+          {unitWind}
+        </Typography>
+      </Tooltip>
+      <Typography variant="body1" pt="0.5em" color="white">
         {selectWeatherDescription(wmoCode)}
       </Typography>
       {date ? (
-        <Typography variant="body1" pt="1em" color="white">
+        <Typography variant="body1" pt="0.5em" color="white">
           {formatDate(date)}
         </Typography>
       ) : null }
