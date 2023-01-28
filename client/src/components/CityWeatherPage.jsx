@@ -32,17 +32,19 @@ function CityWeatherPage() {
     for (let i = 0; i < daysToRender; i++) {
       const newDayData = {
         date: data.daily.time[i],
+        unitTemperature: data.daily_units.temperature_2m_min,
+        wmoCode: data.daily.weathercode[i],
+        unitWindSpeed: data.daily_units.windspeed_10m_max,
         dailyMaxTemp: data.daily.temperature_2m_max[i],
         dailyMinTemp: data.daily.temperature_2m_min[i],
-        unit: data.daily_units.temperature_2m_min,
-        wmoCode: data.daily.weathercode[i],
+        dailyWindSpeedMax: data.daily.windspeed_10m_max[i],
       };
       setWeatherData((prevData) => [...prevData, newDayData]);
     }
   };
 
   const getDataFromApi = () => {
-    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${location.state.city.latitude}&longitude=${location.state.city.longitude}&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Europe/Helsinki`;
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${location.state.city.latitude}&longitude=${location.state.city.longitude}&daily=temperature_2m_max,temperature_2m_min,weathercode,windspeed_10m_max&windspeed_unit=ms&timezone=Europe/Helsinki`;
 
     fetch(apiUrl)
       .then((res) => {
@@ -59,6 +61,7 @@ function CityWeatherPage() {
         createweatherData(data);
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.log('Error while fetching from location API', error);
         setErrorLoading(true);
       });
@@ -135,14 +138,21 @@ function CityWeatherPage() {
       <div className="page-header">
         <Typography variant="h2" color="white">{location.state.city.name}</Typography>
       </div>
+      {multiDayView ? (
+        <Typography variant="body2" color="white" pt="0.5em">Weather cast for the next three days</Typography>
+      ) : (
+        <Typography variant="body2" color="white" pt="0.5em">Today&apos;s weather</Typography>
+      )}
       <div className="weather-data-container">
         {!loading
         && !multiDayView ? (
           <WeatherInformation
             dayMaxTemp={weatherData[0].dailyMaxTemp}
             dayMinTemp={weatherData[0].dailyMinTemp}
-            unit={weatherData[0].unit}
+            unitTemp={weatherData[0].unitTemperature}
             wmoCode={weatherData[0].wmoCode}
+            unitWind={weatherData[0].unitWindSpeed}
+            dayMaxWind={weatherData[0].dailyWindSpeedMax}
           />
           )
           : weatherData.map((item) => (
@@ -151,8 +161,10 @@ function CityWeatherPage() {
               date={item.date}
               dayMaxTemp={item.dailyMaxTemp}
               dayMinTemp={item.dailyMinTemp}
-              unit={item.unit}
+              unitTemp={item.unitTemperature}
               wmoCode={item.wmoCode}
+              unitWind={item.unitWindSpeed}
+              dayMaxWind={item.dailyWindSpeedMax}
             />
           ))}
       </div>

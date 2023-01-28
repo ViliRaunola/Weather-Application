@@ -7,7 +7,7 @@ import wmoInterpretation from '../data/WmoProperties';
 
 // eslint-disable-next-line react/prop-types
 function WeatherInformation({
-  dayMaxTemp, dayMinTemp, unit, date, wmoCode,
+  dayMaxTemp, dayMinTemp, unitTemp, date, wmoCode, dayMaxWind, unitWind,
 }) {
   const formatDate = (date) => {
     const dateArray = date.split('-');
@@ -50,7 +50,12 @@ function WeatherInformation({
         {' '}
         {dayMinTemp}
         {' '}
-        {unit}
+        {unitTemp}
+      </Typography>
+      <Typography variant="body1" pt="1em" color="white">
+        {dayMaxWind}
+        {' '}
+        {unitWind}
       </Typography>
       <Typography variant="body1" pt="1em" color="white">
         {selectWeatherDescription(wmoCode)}

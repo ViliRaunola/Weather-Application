@@ -15,7 +15,7 @@ function CitySelectionPage() {
       <div className="page-header">
         <Typography variant="h2" color="white">The Weather Service</Typography>
       </div>
-      <Typography variant="body1" pt="1em" color="white">Please select the city which weather you want to view.</Typography>
+      <Typography variant="body1" pt="1em" color="white">Select a city to check the weather</Typography>
       <div className="city-container">
         <CityCard cityName="Helsinki" latitude={60.17} longitude={24.95} cityImageSource={helsinkiImage} />
         <CityCard cityName="Lappeenranta" latitude={61.06} longitude={28.19} cityImageSource={lappeenrantaImage} />
