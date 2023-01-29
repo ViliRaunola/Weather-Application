@@ -7,8 +7,12 @@ Live build [here](https://weather-application-production.up.railway.app/)
 Running the application locally only requires the front-end build.
 To run it locally:
 1. Go to .../client
-2. Run the build using this command
+2. Install npm packages by running this command
+```console
+npm install
+```
+3. Run the build using this command
 ```console
 npm start
 ```
-3. Go to http://localhost:3000/
+4. Go to http://localhost:3000/
