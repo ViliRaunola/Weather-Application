@@ -1,6 +1,6 @@
 # Weather-Application
 
-A basic web application for viewing a city's weather forecast.
+A basic web application for viewing a city's weather forecast. Done as a part of a job interview for Weasel Software.
 
 Live build [here](https://weather-application-production.up.railway.app/)
 
